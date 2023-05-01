@@ -17,7 +17,7 @@ export class NinjasController {
   }
   //POST /ninjas
   @Post()
-  createNinja() {
+  createNinja(@Body() createNinjaDto) {
     return {};
   }
   //PUT /ninjas/:id
