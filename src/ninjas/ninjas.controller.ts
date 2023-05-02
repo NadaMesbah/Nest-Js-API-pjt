@@ -31,9 +31,7 @@ export class NinjasController {
   //POST /ninjas
   @Post()
   createNinja(@Body() createNinjaDto: CreateNinjaDto) {
-    return {
-      name: createNinjaDto.name,
-    };
+    return this.ninjasService.createNinja(createNinjaDto);
   }
   //PUT /ninjas/:id
   @Put(':id')
