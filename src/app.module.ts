@@ -5,6 +5,9 @@ import { NinjasModule } from './ninjas/ninjas.module';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './users/entities/user.entity';
+import { JwtModule } from '@nestjs/jwt';
+import { UsersController } from './users/users.controller';
+import { UsersService } from './users/users.service';
 
 @Module({
   imports: [
@@ -20,8 +23,13 @@ import { User } from './users/entities/user.entity';
       entities: [User],
       synchronize: true,
     }),
+    TypeOrmModule.forFeature([User]),
+    JwtModule.register({
+      secret: 'secret',
+      signOptions: { expiresIn: '1d' },
+    }),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, UsersController],
+  providers: [AppService, UsersService],
 })
 export class AppModule {}
