@@ -16,6 +16,7 @@ import { UpdateNinjaDto } from './dto/update-ninja.dto';
 import { NinjasService } from './ninjas.service';
 
 @Controller('ninjas')
+@UseGuards(BeltGuard)
 export class NinjasController {
   constructor(private readonly ninjasService: NinjasService) {}
   //GET /ninjas/
