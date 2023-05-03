@@ -25,8 +25,8 @@ export class NinjasController {
   //GET /ninjas/:id
   @Get(':id')
   getOneNinja(@Param('id') id: string) {
-    const _id: number = +id;
-    return this.ninjasService.getNinja(_id);
+    // const _id: number = +id;
+    return this.ninjasService.getNinja(+id);
   }
   //POST /ninjas
   @Post()
@@ -36,14 +36,11 @@ export class NinjasController {
   //PUT /ninjas/:id
   @Put(':id')
   updateNinja(@Param('id') id: string, @Body() updateNinjaDto: UpdateNinjaDto) {
-    return {
-      id,
-      name: updateNinjaDto,
-    };
+    return this.ninjasService.updateNinja(+id, updateNinjaDto);
   }
   //DELETE /ninjas/:id
   @Delete(':id')
-  deleteNinja() {
-    return {};
+  deleteNinja(@Param('id') id: string) {
+    return this.ninjasService.removeNinja(+id);
   }
 }
