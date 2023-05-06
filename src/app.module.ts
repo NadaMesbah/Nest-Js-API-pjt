@@ -8,6 +8,7 @@ import { User } from './users/entities/user.entity';
 import { JwtModule } from '@nestjs/jwt';
 import { UsersController } from './users/users.controller';
 import { UsersService } from './users/users.service';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { UsersService } from './users/users.service';
       secret: 'secret',
       signOptions: { expiresIn: '1d' },
     }),
+    AuthModule,
   ],
   controllers: [AppController, UsersController],
   providers: [AppService, UsersService],
