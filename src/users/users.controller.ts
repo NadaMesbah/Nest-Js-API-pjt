@@ -8,25 +8,4 @@ export class UsersController {
     private readonly usersService: UsersService,
     private jwtService: JwtService,
   ) {}
-
-  @Get('user')
-  async user(@Req() request: Request) {
-    try {
-      const cookie = request.cookies['jwt'];
-
-      const data = await this.jwtService.verifyAsync(cookie);
-
-      if (!data) {
-        throw new UnauthorizedException();
-      }
-
-      const user = await this.usersService.findOne({ id: data['id'] });
-
-      const { password, ...result } = user;
-
-      return result;
-    } catch (e) {
-      throw new UnauthorizedException();
-    }
-  }
 }
